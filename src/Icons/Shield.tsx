@@ -1,23 +1,25 @@
 import React from "react";
 
-type HeartOutlineProps = {
+type CartOutlineProps = {
   gradient:
     | { allow: true; start: string; end: string }
     | { allow: false; fill: string };
   size: string;
-  strokeWidth?: number;
-  onClick?: () => void;
+  secondaryColor?: string;
+  strokeWidth?: number; // strokeWidth prop
+  onClick?: () => void; // Add onClick prop
 };
 
-const HeartOutline = ({
+// Define the Heart component as a function component
+const Shield = ({
   size = "24px",
   gradient = {
     allow: false,
     fill: "#000000",
   },
-  strokeWidth = 1,
+  strokeWidth = 1, // default strokeWidth value
   onClick,
-}: HeartOutlineProps) => {
+}: CartOutlineProps) => {
   const handleClick = () => {
     if (onClick) {
       onClick();
@@ -25,23 +27,23 @@ const HeartOutline = ({
   };
 
   const downloadAsPng = () => {
-    const svgElement = document.getElementById("heart-outline-svg"); // Get the SVG element by its ID
+    const svgElement = document.getElementById("shield-outline-svg"); // Get the SVG element by its ID
     if (svgElement) {
       const svgData = new XMLSerializer().serializeToString(svgElement); // Convert the SVG element to a string
       const canvas = document.createElement("canvas"); // Create a canvas element
       const ctx = canvas.getContext("2d"); // Get the 2D rendering context of the canvas
-
+  
       const img = new Image(); // Create an image element
       img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData)); // Set the source of the image to the SVG data encoded as a base64 string
-
+  
       img.onload = function () {
         canvas.width = img.width; // Set the canvas width to match the image width
         canvas.height = img.height; // Set the canvas height to match the image height
         ctx?.drawImage(img, 0, 0); // Draw the image onto the canvas at coordinates (0, 0)
-
+  
         const a = document.createElement("a"); // Create an anchor element
         a.setAttribute("href", canvas.toDataURL("image/png")); // Set the anchor's href attribute to the canvas data URL representing the PNG image
-        a.setAttribute("download", "heart_outline.png"); // Set the download attribute to specify the file name as "heart_outline.png"
+        a.setAttribute("download", "shield.png"); // Set the download attribute to specify the file name as "heart_outline.png"
         a.style.display = "none"; // Hide the anchor element
         document.body.appendChild(a); // Append the anchor element to the document body
         a.click(); // Simulate a click on the anchor element to trigger the download
@@ -49,18 +51,18 @@ const HeartOutline = ({
       };
     }
   };
-
+  
   const downloadAsSvg = () => {
-    const svgElement = document.getElementById("heart-outline-svg"); // Get the SVG element by its ID
+    const svgElement = document.getElementById("shield-outline-svg"); // Get the SVG element by its ID
     if (svgElement) {
       const svgData = new XMLSerializer().serializeToString(svgElement); // Convert the SVG element to a string
-
+  
       const a = document.createElement("a"); // Create an anchor element
       a.setAttribute(
         "href",
         "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgData)
       ); // Set the anchor's href attribute to the SVG data encoded as a URI component
-      a.setAttribute("download", "heart_outline.svg"); // Set the download attribute to specify the file name as "heart_outline.svg"
+      a.setAttribute("download", "shield.svg"); // Set the download attribute to specify the file name as "heart_outline.svg"
       a.style.display = "none"; // Hide the anchor element
       document.body.appendChild(a); // Append the anchor element to the document body
       a.click(); // Simulate a click on the anchor element to trigger the download
@@ -68,46 +70,44 @@ const HeartOutline = ({
     }
   };
 
+
+
   return (
     <div>
-      <svg
-        id="heart-outline-svg" // Add id to the svg element for accessing it in download functions
-        height={size}
-        width={size}
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 471.701 471.701"
-        onClick={handleClick}
-        style={{ cursor: "pointer" }}
-      >
-        <defs>
-          <linearGradient id="gradient">
-            <stop offset="0%" stop-color={gradient.allow && gradient.start} />
-            <stop offset="100%" stop-color={gradient.allow && gradient.end} />
-          </linearGradient>
-        </defs>
-        <g>
-          <path
-            d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-          c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-          l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-          C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-          s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-          c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-          C444.801,187.101,434.001,213.101,414.401,232.701z"
-            fill={gradient.allow ? "url(#gradient)" : gradient.fill}
-            strokeWidth={strokeWidth}
-            stroke={gradient.allow ? gradient.start : gradient.fill}
-          />
-        </g>
-      </svg>
-      <select className="dropdown" onChange={(e) => e.target.value === "png" ? downloadAsPng() : downloadAsSvg()}>
+    <svg
+      id="shield-outline-svg" // Add id to the svg element for accessing it in download functions
+      height={size}
+      width={size}
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 150 150"
+      onClick={handleClick}
+      style={{ cursor: "pointer" }}
+    >
+      <defs>
+        <linearGradient id={"gradient"}>
+          <stop offset="0%" stop-color={gradient.allow && gradient.start} />
+          <stop offset="100%" stop-color={gradient.allow && gradient.end} />
+        </linearGradient>
+      </defs>
+      <g>
+        <path
+          d="m75,132.75c-4.77-2.67-9.25-5.35-14.02-8.56-4.77-2.94-8.97-6.15-13.18-9.63-4.21-3.48-8.13-7.22-11.78-10.96-3.65-4.01-6.73-8.02-9.25-12.57-2.52-4.55-4.77-9.36-6.17-14.17-1.4-5.08-2.24-10.43-2.24-16.04v-29.14c3.36,0,6.45,0,9.53-.27,2.8-.27,5.89-.8,8.69-1.34,2.8-.53,5.89-1.34,8.69-2.67,2.8-1.07,5.61-2.41,8.41-4.28,3.36-2.14,6.73-3.48,10.09-4.55,3.36-.8,7.01-1.34,11.22-1.34,1.96,0,3.93,0,5.61.27,1.68.27,3.65.53,5.33,1.07,1.68.8,3.36,1.34,5.05,2.14,1.68.8,3.36,1.6,5.05,2.67,2.8,1.6,5.61,3.21,8.41,4.28,2.8,1.07,5.61,1.87,8.69,2.67,2.8.53,5.89,1.07,8.97,1.34,3.08.27,6.17.27,9.53.27v28.88c0,5.61-.84,10.96-2.24,16.04-1.4,5.08-3.65,9.89-6.17,14.17-2.52,4.55-5.89,8.56-9.25,12.57-3.65,4.01-7.57,7.49-11.78,10.96-4.21,3.48-8.69,6.68-13.18,9.63-4.77,3.21-9.25,5.88-14.02,8.56Z" 
+          strokeMiterlimit={3}
+          fill="none"
+          strokeWidth={strokeWidth}
+          stroke={gradient.allow ? "url(#gradient)" : gradient.fill}
+        />
+      </g>
+    </svg>
+    <select className="dropdown" onChange={(e) => e.target.value === "png" ? downloadAsPng() : downloadAsSvg()}>
         <option value="" disabled selected>Download</option>
         <option value="png">Download PNG</option>
         <option value="svg">Download SVG</option>
       </select>
-      </div>
+    </div>
+    
   );
 };
 
-export default HeartOutline;
+export default Shield;

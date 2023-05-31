@@ -1,4 +1,5 @@
 import React from "react";
+import "./app.css";
 
 type CartOutlineProps = {
     gradient:
@@ -25,12 +26,61 @@ const CartOutline = ({
           onClick();
         }
       };
+
+
+      const downloadAsPng = () => {
+        const svgElement = document.getElementById("cart-outline-svg"); // Get the SVG element by its ID
+        if (svgElement) {
+          const svgData = new XMLSerializer().serializeToString(svgElement); // Convert the SVG element to a string
+          const canvas = document.createElement("canvas"); // Create a canvas element
+          const ctx = canvas.getContext("2d"); // Get the 2D rendering context of the canvas
+      
+          const img = new Image(); // Create an image element
+          img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData)); // Set the source of the image to the SVG data encoded as a base64 string
+      
+          img.onload = function () {
+            canvas.width = img.width; // Set the canvas width to match the image width
+            canvas.height = img.height; // Set the canvas height to match the image height
+            ctx?.drawImage(img, 0, 0); // Draw the image onto the canvas at coordinates (0, 0)
+      
+            const a = document.createElement("a"); // Create an anchor element
+            a.setAttribute("href", canvas.toDataURL("image/png")); // Set the anchor's href attribute to the canvas data URL representing the PNG image
+            a.setAttribute("download", "cart.png"); // Set the download attribute to specify the file name as "heart_outline.png"
+            a.style.display = "none"; // Hide the anchor element
+            document.body.appendChild(a); // Append the anchor element to the document body
+            a.click(); // Simulate a click on the anchor element to trigger the download
+            document.body.removeChild(a); // Remove the anchor element from the document body after the download
+          };
+        }
+      };
+      
+      const downloadAsSvg = () => {
+        const svgElement = document.getElementById("cart-outline-svg"); // Get the SVG element by its ID
+        if (svgElement) {
+          const svgData = new XMLSerializer().serializeToString(svgElement); // Convert the SVG element to a string
+      
+          const a = document.createElement("a"); // Create an anchor element
+          a.setAttribute(
+            "href",
+            "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgData)
+          ); // Set the anchor's href attribute to the SVG data encoded as a URI component
+          a.setAttribute("download", "cart.svg"); // Set the download attribute to specify the file name as "heart_outline.svg"
+          a.style.display = "none"; // Hide the anchor element
+          document.body.appendChild(a); // Append the anchor element to the document body
+          a.click(); // Simulate a click on the anchor element to trigger the download
+          document.body.removeChild(a); // Remove the anchor element from the document body after the download
+        }
+      };
+
+
+
     return (
+      <div>
     <svg
+    id="cart-outline-svg" // Add id to the svg element for accessing it in download functions
       height={size}
       width={size}
       version="1.1"
-      id="Capa_1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 486.569 486.569"
       onClick={handleClick}
@@ -67,6 +117,12 @@ const CartOutline = ({
         />
       </g>
     </svg>
+    <select className="dropdown" onChange={(e) => e.target.value === "png" ? downloadAsPng() : downloadAsSvg()}>
+        <option value="" disabled selected>Download</option>
+        <option value="png">Download PNG</option>
+        <option value="svg">Download SVG</option>
+      </select>
+      </div>
   );
 };
 

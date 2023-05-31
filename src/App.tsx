@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CartOutline, HeartOutline, SettingsOutline } from "./Icons";
+import { CartOutline, HeartOutline, HeartOutlinecopy, Linkedin, SettingsOutline, Shield } from "./Icons";
 import "./App.css"; 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -11,6 +11,8 @@ function App(): JSX.Element {
   const [gradient, setGradient] = useState(false);
   const [strokeWidth, setStrokeWidth] = useState<number>(2); // Initial stroke width
 
+  
+    // Event handlers for state updates
   const handlePrimaryColorChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -123,8 +125,41 @@ function App(): JSX.Element {
           strokeWidth={strokeWidth}
           onClick={() => handleIconClick("Cart")}
         />
+
+<HeartOutlinecopy
+          size={size + "px"}
+          gradient={
+            gradient
+              ? { allow: true, start: primaryColor, end: secondaryColor }
+              : { allow: false, fill: primaryColor }
+          }
+          strokeWidth={strokeWidth}
+          onClick={() => handleIconClick("Heart")}
+        />
+
+<Shield
+          size={size + "px"}
+          gradient={
+            gradient
+              ? { allow: true, start: primaryColor, end: secondaryColor }
+              : { allow: false, fill: primaryColor }
+          }
+          strokeWidth={strokeWidth}
+          onClick={() => handleIconClick("Heart")}
+        />
+
+<Linkedin
+          size={size + "px"}
+          gradient={
+            gradient
+              ? { allow: true, start: primaryColor, end: secondaryColor }
+              : { allow: false, fill: primaryColor }
+          }
+          strokeWidth={strokeWidth}
+          onClick={() => handleIconClick("Heart")}
+        />
       </div>
-      <div>
+      {/* <div>
         <h4 style={{ textAlign: "left" }}>Example Usage in React App</h4>
 
         <SyntaxHighlighter language="javascript" style={dracula}>
@@ -134,7 +169,7 @@ function App(): JSX.Element {
  strokeWidth={${strokeWidth}}
 />`}
         </SyntaxHighlighter>
-      </div>
+      </div> */}
     </div>
   );
 }
