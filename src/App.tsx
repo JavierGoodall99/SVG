@@ -148,7 +148,7 @@ function App(): JSX.Element {
           onClick={() => handleIconClick("Heart")}
         />
 
-<Linkedin
+{/* <Linkedin
           size={size + "px"}
           gradient={
             gradient
@@ -157,7 +157,7 @@ function App(): JSX.Element {
           }
           strokeWidth={strokeWidth}
           onClick={() => handleIconClick("Heart")}
-        />
+        /> */}
       </div>
       {/* <div>
         <h4 style={{ textAlign: "left" }}>Example Usage in React App</h4>
