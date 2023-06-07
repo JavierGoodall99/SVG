@@ -84,6 +84,8 @@ const HeartOutline = ({
 
   return (
     <div>
+      <button onClick={handleCodeClick}>
+      <div className="Container" style={{ width: "120px", height: "120px", overflow: "hidden" }}>
       <svg
         id="heart-outline-svg" // Add id to the svg element for accessing it in download functions
         height={size}
@@ -115,12 +117,12 @@ const HeartOutline = ({
           />
         </g>
       </svg>
+        {/* <h2>Heart</h2> */}
+        </div>
       <div>
       <h2>Heart</h2>
-        <button className="dropdown" onClick={handleCodeClick}>
-          View SVG Code
-        </button>
       </div>
+        </button>
       {showCode && (
         <div
           style={{

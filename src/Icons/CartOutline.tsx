@@ -86,6 +86,8 @@ const CartOutline = ({
 
   return (
     <div>
+      <button onClick={handleCodeClick}>
+      <div className="Container" style={{ width: "120px", height: "120px", overflow: "hidden" }}>
       <svg
         id="cart-outline-svg" // Add id to the svg element for accessing it in download functions
         height={size}
@@ -126,13 +128,13 @@ const CartOutline = ({
             stroke={gradient.allow ? gradient.start : gradient.fill}
           />
         </g>
-      </svg>
+        </svg>
+        {/* <h2>Heart</h2> */}
+        </div>
       <div>
-        <h2>Cart</h2>
-        <button className="dropdown" onClick={handleCodeClick}>
-          View SVG Code
-        </button>
+      <h2>Cart</h2>
       </div>
+        </button>
       {showCode && (
         <div
           style={{

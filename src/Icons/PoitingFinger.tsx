@@ -3,7 +3,7 @@ import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 import "./app.css";
 
-type HeartOutlineProps = {
+type PointingFingerProps = {
   gradient:
     | { allow: true; start: string; end: string }
     | { allow: false; fill: string };
@@ -12,7 +12,7 @@ type HeartOutlineProps = {
   onClick?: () => void; // onClick prop
 };
 
-const HeartOutline = ({
+const PointingFinger = ({
   size = "24px",
   gradient = {
     allow: false,
@@ -20,7 +20,7 @@ const HeartOutline = ({
   },
   strokeWidth = 1, // default strokeWidth value
   onClick,
-}: HeartOutlineProps) => {
+}: PointingFingerProps) => {
   const [showCode, setShowCode] = useState(false); // Track the state of the code display
 
   const handleClick = () => {
@@ -84,6 +84,8 @@ const HeartOutline = ({
 
   return (
     <div>
+      <button onClick={handleCodeClick}>
+      <div className="Container" style={{ width: "120px", height: "120px", overflow: "hidden" }}>
       <svg
         id="finger-outline-svg" // Add id to the svg element for accessing it in download functions
         height={size}
@@ -109,13 +111,13 @@ const HeartOutline = ({
             stroke={gradient.allow ? "url(#gradient)" : gradient.fill}
           />
         </g>
-      </svg>
+        </svg>
+        {/* <h2>Heart</h2> */}
+        </div>
       <div>
-        <h2>Pointing Finger</h2>
-        <button className="dropdown" onClick={handleCodeClick}>
-          View SVG Code
-        </button>
+      <h2>Pointing Finger</h2>
       </div>
+        </button>
       {showCode && (
         <div
           style={{
@@ -180,4 +182,4 @@ stroke=${gradient.allow ? "url(#gradient)" : gradient.fill}
   );
 };
 
-export default HeartOutline;
+export default PointingFinger;

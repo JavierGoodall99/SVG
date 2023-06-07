@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { CartOutline, HeartOutline, HeartOutlinecopy, Linkedin, SettingsOutline, Shield } from "./Icons";
+import { CartOutline, HeartOutline, PointingFinger, Linkedin, SettingsOutline, Shield } from "./Icons";
 import "./App.css"; 
+import SearchBar from './SearchBar';
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -9,7 +10,79 @@ function App(): JSX.Element {
   const [secondaryColor, setSecondaryColor] = useState<string>("#FFFFFF"); // Initial secondary color
   const [size, setSize] = useState<number>(80); // Initial size
   const [gradient, setGradient] = useState(false);
-  const [strokeWidth, setStrokeWidth] = useState<number>(2); // Initial stroke width
+  const [strokeWidth, setStrokeWidth] = useState<number>(5); // Initial stroke width
+
+  const handleSearch = (searchTerm: string) => {
+    // Perform your search logic here using the search term
+    console.log('Searching for:', searchTerm);
+  
+    // Filter the icons based on the search term
+    const filteredIcons = icons.filter((icon) =>
+      icon.type.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  
+    // Update the search results state
+    setSearchResults(filteredIcons);
+  };
+  
+  const [searchResults, setSearchResults] = useState<React.ReactNode[]>([]);
+
+
+
+  const icons = [
+    <HeartOutline
+    size={size + "px"}
+    gradient={
+      gradient
+        ? { allow: true, start: primaryColor, end: secondaryColor }
+        : { allow: false, fill: primaryColor }
+    }
+    strokeWidth={strokeWidth}
+    onClick={() => handleIconClick("Heart")}
+  />
+  , <SettingsOutline
+  size={size + "px"}
+  gradient={
+    gradient
+      ? { allow: true, start: primaryColor, end: secondaryColor }
+      : { allow: false, fill: primaryColor }
+  }
+  strokeWidth={strokeWidth}
+  onClick={() => handleIconClick("Settings")}
+/>,
+<CartOutline
+  size={size + "px"}
+  gradient={
+    gradient
+      ? { allow: true, start: primaryColor, end: secondaryColor }
+      : { allow: false, fill: primaryColor }
+  }
+  strokeWidth={strokeWidth}
+  onClick={() => handleIconClick("Cart")}
+/>,
+
+<PointingFinger
+  size={size + "px"}
+  gradient={
+    gradient
+      ? { allow: true, start: primaryColor, end: secondaryColor }
+      : { allow: false, fill: primaryColor }
+  }
+  strokeWidth={strokeWidth}
+  onClick={() => handleIconClick("Heart")}
+/>,
+
+<Shield
+  size={size + "px"}
+  gradient={
+    gradient
+      ? { allow: true, start: primaryColor, end: secondaryColor }
+      : { allow: false, fill: primaryColor }
+  }
+  strokeWidth={strokeWidth}
+  onClick={() => handleIconClick("Heart")}
+/>
+  ]
 
   
     // Event handlers for state updates
@@ -40,13 +113,24 @@ function App(): JSX.Element {
   };
 
   return (
-    <div className="App">
-      <div className="landing-page">
-        <h1>Welcome to the Icon App</h1>
-        <p>Select a start color, end color, size, and stroke width to customize the icons:</p>
-
+    <div  >
+      <div className="body">
+          <h1>Welcome to the Icon App</h1>
+      </div>
+          <br />
+          <br />
+          <br />
+          <div className="search">
+      <SearchBar onSearch={handleSearch} />
+          </div>
+      <br />
+          <br />
+          <br />
+    <div className="wrapper">
+      <div className="sidenav">
+      <div className="container">
         <label htmlFor="primaryColor">
-          {gradient ? "Select Start color: " : "Select color: "}
+          {gradient ? "First color " : "Select color: "}
         </label>
         <input
           type="color"
@@ -55,7 +139,7 @@ function App(): JSX.Element {
         />
         {gradient && (
           <>
-            <label htmlFor="secondaryColor">Select End Color:</label>
+            <label htmlFor="secondaryColor">Second Color</label>
             <input
               type="color"
               value={secondaryColor}
@@ -64,24 +148,24 @@ function App(): JSX.Element {
           </>
         )}
 
-        <label htmlFor="isGradient">Tick for Gradient:</label>
+        <label htmlFor="isGradient">Tick to Gradient:</label>
         <input
           type="checkbox"
           onChange={() => setGradient(!gradient)}
           id="isGradient"
         />
 
-        <label htmlFor="size">Select Size:</label>
+        <label htmlFor="size">Size {size} px</label>
         <input
           type="range"
           id="size"
           min="20"
-          max="200"
+          max="100"
           value={size}
           onChange={handleSizeChange}
         />
 
-        <label htmlFor="strokeWidth">Select Stroke Width:</label>
+        <label htmlFor="strokeWidth">Stroke Width {strokeWidth} px</label>
         <input
           type="range"
           id="strokeWidth"
@@ -91,62 +175,28 @@ function App(): JSX.Element {
           onChange={handleStrokeWidthChange}
         />
       </div>
-
+</div>
+    <div className="App">
       <div className="App-header">
-        <HeartOutline
-          size={size + "px"}
-          gradient={
-            gradient
-              ? { allow: true, start: primaryColor, end: secondaryColor }
-              : { allow: false, fill: primaryColor }
-          }
-          strokeWidth={strokeWidth}
-          onClick={() => handleIconClick("Heart")}
-        />
+      
+      {searchResults.length > 0 ? (
+  searchResults.map((icon, index) => (
+    React.cloneElement(icon as React.ReactElement, { key: index })
+  ))
+) : (
+  [...icons, ...icons, ...icons, ...icons, ...icons, ...icons, ...icons, ...icons, ...icons].map((icon, index) => (
+    React.cloneElement(icon as React.ReactElement, { key: index })
+  ))
+)}
 
-        <SettingsOutline
-          size={size + "px"}
-          gradient={
-            gradient
-              ? { allow: true, start: primaryColor, end: secondaryColor }
-              : { allow: false, fill: primaryColor }
-          }
-          strokeWidth={strokeWidth}
-          onClick={() => handleIconClick("Settings")}
-        />
 
-        <CartOutline
-          size={size + "px"}
-          gradient={
-            gradient
-              ? { allow: true, start: primaryColor, end: secondaryColor }
-              : { allow: false, fill: primaryColor }
-          }
-          strokeWidth={strokeWidth}
-          onClick={() => handleIconClick("Cart")}
-        />
 
-<HeartOutlinecopy
-          size={size + "px"}
-          gradient={
-            gradient
-              ? { allow: true, start: primaryColor, end: secondaryColor }
-              : { allow: false, fill: primaryColor }
-          }
-          strokeWidth={strokeWidth}
-          onClick={() => handleIconClick("Heart")}
-        />
+       
 
-<Shield
-          size={size + "px"}
-          gradient={
-            gradient
-              ? { allow: true, start: primaryColor, end: secondaryColor }
-              : { allow: false, fill: primaryColor }
-          }
-          strokeWidth={strokeWidth}
-          onClick={() => handleIconClick("Heart")}
-        />
+        
+        
+        
+        
 
 {/* <Linkedin
           size={size + "px"}
@@ -170,6 +220,10 @@ function App(): JSX.Element {
 />`}
         </SyntaxHighlighter>
       </div> */}
+
+      
+    </div>
+    </div>
     </div>
   );
 }

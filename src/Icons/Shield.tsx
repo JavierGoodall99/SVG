@@ -88,7 +88,9 @@ const Shield = ({
 
   return (
     <div>
-    <svg
+      <button onClick={handleCodeClick}>
+      <div className="Container" style={{ width: "120px", height: "120px", overflow: "hidden" }}>
+      <svg
       id="shield-outline-svg" // Add id to the svg element for accessing it in download functions
       height={size}
       width={size}
@@ -113,13 +115,13 @@ const Shield = ({
           stroke={gradient.allow ? "url(#gradient)" : gradient.fill}
         />
       </g>
-    </svg>
-    <div>
-        <h2>Shield</h2>
-        <button className="dropdown" onClick={handleCodeClick}>
-          View SVG Code
-        </button>
+      </svg>
+        {/* <h2>Heart</h2> */}
+        </div>
+      <div>
+      <h2>Cart</h2>
       </div>
+        </button>
       {showCode && (
         <div
           style={{

@@ -1,4 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+
+
+/* SVG Container */
+.Container {
+  width: "120px";
+  height: "120px";
+   overflow: "hidden";
+   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+   border-radius: 10px;
+} 
+
+.Container:hover{
+  box-shadow: 0 3px 10px rgba(180, 95, 255, 0.6);
+}
+
+
 
 .dropdown, option {
     background-color: #f2f2f2;
@@ -8,7 +24,7 @@
     border-radius: 7px;
     margin: 2px;
     cursor: pointer;
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Nanum Myeongjo', serif;
     font-weight: 900;
     font-size: medium;
     color: black;
@@ -22,19 +38,25 @@
     border-radius: 7px;
     margin: 10px;
     cursor: pointer;
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Nanum Myeongjo', serif;
     font-weight: 900;
     font-size: medium;
     color: black;
-    
   }
 
   h2 {
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: larger;
+   margin-bottom: 40px;
+   /* margin-top: ; */
   }
   
   .dropdown:hover {
     background-color: #ddd;
   }
   
+  button {
+    background: none;
+    border: none;
+  }
   

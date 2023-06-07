@@ -85,6 +85,8 @@ const SettingsOutline = ({
 
   return (
     <div>
+            <button onClick={handleCodeClick}>
+      <div className="Container" style={{ width: "120px", height: "120px", overflow: "hidden" }}>
       <svg
         id="settings-outline-svg" // Add id to the svg element for accessing it in download functions
         height={size}
@@ -142,12 +144,12 @@ const SettingsOutline = ({
           </g>
         </g>
       </svg>
+        {/* <h2>Heart</h2> */}
+        </div>
       <div>
-        <h2>Settings</h2>
-        <button className="dropdown" onClick={handleCodeClick}>
-          View SVG Code
-        </button>
+      <h2>Settings</h2> 
       </div>
+              </button>
       {showCode && (
         <div
           style={{
