@@ -75,7 +75,7 @@ function App(): JSX.Element {
           : { allow: false, fill: primaryColor }
       }
       strokeWidth={strokeWidth}
-      onClick={() => handleIconClick("Heart")}
+      onClick={() => handleIconClick("PointingFinger")}
     />,
 
     <Shield
@@ -86,7 +86,7 @@ function App(): JSX.Element {
           : { allow: false, fill: primaryColor }
       }
       strokeWidth={strokeWidth}
-      onClick={() => handleIconClick("Heart")}
+      onClick={() => handleIconClick("Shield")}
     />,
   ];
 

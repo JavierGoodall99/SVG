@@ -119,7 +119,7 @@ const Shield = ({
         {/* <h2>Heart</h2> */}
         </div>
       <div>
-      <h2>Cart</h2>
+      <h2>Shield</h2>
       </div>
         </button>
       {showCode && (
