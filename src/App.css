@@ -99,6 +99,32 @@ header.App-header {
 }
 
 
+/* SideBar */
+.sidenav {
+  width: 25%;
+  height: 25vh;
+  /* position: -webkit-sticky; */
+  position: sticky;
+  top: 0;
+  /* z-index: 0; */
+}
+
+.container {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border-radius: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 30px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-family: 'Nanum Myeongjo', serif;
+}
 
 
 /* Side Bar Content */
@@ -143,32 +169,6 @@ input[type="range"]::-webkit-slider-thumb {
 
 
 
-/* SideBar */
-.sidenav {
-  width: 25%;
-  height: 25vh;
-  /* position: -webkit-sticky; */
-  position: sticky;
-  top: 0;
-  /* z-index: 0; */
-}
-
-.container {
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  border-radius: 10px;
-  margin-left: 50px;
-  margin-right: 50px;
-  padding: 30px;
-  text-align: center;
-}
-
-label {
-  display: block;
-  font-size: 17px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  font-family: 'Nanum Myeongjo', serif;
-}
 
 
 
@@ -191,3 +191,40 @@ label {
     flex-basis: calc(50% - 60px); 
   }
 }
+
+
+
+/* FOOTER */
+
+/* .footer {
+  background-image: url('./Icons/bbblurry.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 50px 0;
+  font-size: 17px;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.2rem;
+  line-height: 40px;
+  position: ab;
+  bottom: 0;
+  width: 100%;
+} */
+
+
+
+
+
+
+
+/* Media Query */
+/* @media screen  and (max-width:1080px) {
+    .footer i {
+    font-size: small;
+}
+.footer a {
+    font-size: small;
+    line-height: 36px;
+}
+} */
