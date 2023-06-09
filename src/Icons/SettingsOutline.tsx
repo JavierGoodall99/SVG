@@ -150,7 +150,7 @@ const SettingsOutline = ({
       <h2>Settings</h2> 
       </div>
               </button>
-      {showCode && (
+              {showCode && (
         <div
           style={{
             position: "fixed",
@@ -158,11 +158,10 @@ const SettingsOutline = ({
             right: 0,
             width: "20%",
             height: "100%",
-            backgroundColor: "#f5f5f5",
-            padding: "10px",
             overflowY: "scroll",
           }}
         >
+          <pre className="language-markup animate__animated animate__slideInRight">
           <button
             className="dropdown"
             style={{ position: "absolute", top: "10px", right: "10px" }}
@@ -170,9 +169,8 @@ const SettingsOutline = ({
           >
             Close
           </button>
-          <pre className="language-markup">
             <code className="language-markup">
-              {
+            {
 `
 <svg
 id="settings-outline-svg"

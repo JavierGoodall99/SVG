@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+import SearchBar from "./SearchBar";
+import Footer from "./Footer";
+// import MyComponent from './MyComponent';
+
+
+// import video from './SVGFiles/video.svg'
+
 import {
   CartOutline,
   HeartOutline,
@@ -7,9 +14,6 @@ import {
   SettingsOutline,
   Shield,
 } from "./Icons";
-import "./App.css";
-import SearchBar from "./SearchBar";
-import Footer from "./Footer";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -20,75 +24,108 @@ function App(): JSX.Element {
   const [gradient, setGradient] = useState(false);
   const [strokeWidth, setStrokeWidth] = useState<number>(5); // Initial stroke width
 
-  const handleSearch = (searchTerm: string) => {
-    // Perform your search logic here using the search term
-    console.log("Searching for:", searchTerm);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-    // Filter the icons based on the search term
-    const filteredIcons = icons.filter((icon) =>
-      icon.type.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  const [searchResults, setSearchResults] = useState<{ icon: React.ReactNode, category: string }[]>([]);
+
+  const icons = [
+    {
+      icon: (
+        <HeartOutline
+          size={size + "px"}
+          gradient={
+            gradient
+              ? { allow: true, start: primaryColor, end: secondaryColor }
+              : { allow: false, fill: primaryColor }
+          }
+          strokeWidth={strokeWidth}
+          onClick={() => handleIconClick("Heart")}
+        />
+      ),
+      category: "Category1",
+    },
+    {
+      icon: (
+        <SettingsOutline
+          size={size + "px"}
+          gradient={
+            gradient
+              ? { allow: true, start: primaryColor, end: secondaryColor }
+              : { allow: false, fill: primaryColor }
+          }
+          strokeWidth={strokeWidth}
+          onClick={() => handleIconClick("Settings")}
+        />
+      ),
+      category: "Category2",
+    },
+    {
+      icon: (
+        <CartOutline
+          size={size + "px"}
+          gradient={
+            gradient
+              ? { allow: true, start: primaryColor, end: secondaryColor }
+              : { allow: false, fill: primaryColor }
+          }
+          strokeWidth={strokeWidth}
+          onClick={() => handleIconClick("Cart")}
+        />
+      ),
+      category: "Category1",
+    },
+    {
+      icon: (
+        <PointingFinger
+          size={size + "px"}
+          gradient={
+            gradient
+              ? { allow: true, start: primaryColor, end: secondaryColor }
+              : { allow: false, fill: primaryColor }
+          }
+          strokeWidth={strokeWidth}
+          onClick={() => handleIconClick("PointingFinger")}
+        />
+      ),
+      category: "Category3",
+    },
+    {
+      icon: (
+        <Shield
+          size={size + "px"}
+          gradient={
+            gradient
+              ? { allow: true, start: primaryColor, end: secondaryColor }
+              : { allow: false, fill: primaryColor }
+          }
+          strokeWidth={strokeWidth}
+          onClick={() => handleIconClick("Shield")}
+        />
+      ),
+      category: "Category2",
+    },
+  ];
+
+  const handleSearch = (searchTerm: string, category: string) => {
+    setSelectedCategory(category);
+
+    // Perform your search logic here using the search term and category
+    console.log("Searching for:", searchTerm, "in category:", category);
+
+    // Filter the icons based on the search term and category
+    const filteredIcons = icons.filter((item: { icon: React.ReactNode, category: string }) => {
+      const iconElement = item.icon as React.ReactElement;
+      const iconType = iconElement.type as React.ComponentType<any>;
+
+      return (
+        item.category.toLowerCase().includes(category.toLowerCase()) &&
+        iconType.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    });
 
     // Update the search results state
     setSearchResults(filteredIcons);
   };
-
-  const [searchResults, setSearchResults] = useState<React.ReactNode[]>([]);
-
-  const icons = [
-    <HeartOutline
-      size={size + "px"}
-      gradient={
-        gradient
-          ? { allow: true, start: primaryColor, end: secondaryColor }
-          : { allow: false, fill: primaryColor }
-      }
-      strokeWidth={strokeWidth}
-      onClick={() => handleIconClick("Heart")}
-    />,
-    <SettingsOutline
-      size={size + "px"}
-      gradient={
-        gradient
-          ? { allow: true, start: primaryColor, end: secondaryColor }
-          : { allow: false, fill: primaryColor }
-      }
-      strokeWidth={strokeWidth}
-      onClick={() => handleIconClick("Settings")}
-    />,
-    <CartOutline
-      size={size + "px"}
-      gradient={
-        gradient
-          ? { allow: true, start: primaryColor, end: secondaryColor }
-          : { allow: false, fill: primaryColor }
-      }
-      strokeWidth={strokeWidth}
-      onClick={() => handleIconClick("Cart")}
-    />,
-
-    <PointingFinger
-      size={size + "px"}
-      gradient={
-        gradient
-          ? { allow: true, start: primaryColor, end: secondaryColor }
-          : { allow: false, fill: primaryColor }
-      }
-      strokeWidth={strokeWidth}
-      onClick={() => handleIconClick("PointingFinger")}
-    />,
-
-    <Shield
-      size={size + "px"}
-      gradient={
-        gradient
-          ? { allow: true, start: primaryColor, end: secondaryColor }
-          : { allow: false, fill: primaryColor }
-      }
-      strokeWidth={strokeWidth}
-      onClick={() => handleIconClick("Shield")}
-    />,
-  ];
 
   // Event handlers for state updates
   const handlePrimaryColorChange = (
@@ -122,11 +159,15 @@ function App(): JSX.Element {
       <div className="body">
         <h1>Welcome to the Icon App</h1>
       </div>
+      <div>
+      {/* <MyComponent /> */}
+        {/* <img height={50} src={video} alt='video' /> */}
+      </div>
       <br />
       <br />
       <br />
       <div className="search">
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar onSearch={(searchTerm: string, category: string) => handleSearch(searchTerm, category)} />
       </div>
       <br />
       <br />
@@ -154,7 +195,7 @@ function App(): JSX.Element {
               </>
             )}
 
-            <label htmlFor="isGradient">Tick to Gradient</label>
+            <label htmlFor="isGradient">Tick for Gradient</label>
             <input
               type="checkbox"
               onChange={() => setGradient(!gradient)}
@@ -185,10 +226,10 @@ function App(): JSX.Element {
         <div className="App">
           <div className="App-header">
             {searchResults.length > 0
-              ? searchResults.map((icon, index) =>
-                  React.cloneElement(icon as React.ReactElement, { key: index })
+              ? searchResults.map((item, index) =>
+                  React.cloneElement(item.icon as React.ReactElement, { key: index })
                 )
-              : [
+                : [
                   ...icons,
                   ...icons,
                   ...icons,
@@ -198,8 +239,9 @@ function App(): JSX.Element {
                   ...icons,
                   ...icons,
                   ...icons,
-                ].map((icon, index) =>
-                  React.cloneElement(icon as React.ReactElement, { key: index })
+                ]
+              .map((item, index) =>
+                  React.cloneElement(item.icon as React.ReactElement, { key: index })
                 )}
           </div>
         </div>

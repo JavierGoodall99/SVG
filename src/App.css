@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
 
 
-.body{
+
+
+.body {
   background-image: url('./Icons/bbblurry.svg');
   background-size: cover; /* Adjust as needed */
   background-repeat: no-repeat;
@@ -17,7 +19,7 @@ h1 {
   font-weight: 100;
   text-align: center;
   margin-top: 0;
-  padding-top:150px;
+  padding-top: 110px;
   color: white;
 }
 
@@ -67,7 +69,7 @@ header.App-header {
   text-align: center;
   background-color: #fff;
   padding: 10px;
-  z-index: 0;
+  /* z-index: auto; */
 }
 
 .search input {
@@ -76,10 +78,10 @@ header.App-header {
   font-family: 'Nanum Myeongjo', serif;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 300px;
+  width: 430px;
 }
 
-.search button {
+.searchButton {
   padding: 10px 15px;
   font-size: 25px;
   font-weight: 500;
@@ -88,16 +90,61 @@ header.App-header {
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
+  width: 130px;
   border: none;
   border-radius: 4px;
   margin-left: 10px;
   cursor: pointer;
 }
 
-.search button:hover {
+.searchButton:hover {
   background-color: #7a777b;
 }
 
+/* Catogory Filter */
+
+.custom-select {
+  background-color: #ffffff;
+  color: #333;
+  /* position: sticky; */
+  margin-right: 10px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 24px;
+  font-family: 'Nanum Myeongjo', serif;
+}
+
+/* .category-container {
+  display: flex;
+  flex-direction: row;
+} */
+
+.category-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 35%;
+}
+
+.category-label {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Adjust the spacing as needed */
+  width: 150px;
+
+}
+
+
+.red-placeholder::placeholder {
+  color: rgb(0, 0, 0); /* change color here */
+}
+
+.custom-select:hover {
+  background-color: #dbdbdb;
+}
 
 /* SideBar */
 .sidenav {
@@ -228,3 +275,7 @@ input[type="range"]::-webkit-slider-thumb {
     line-height: 36px;
 }
 } */
+
+
+
+     

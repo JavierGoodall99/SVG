@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 import "./app.css";
+import 'animate.css';
 
 type HeartOutlineProps = {
   gradient:
@@ -131,12 +132,10 @@ const HeartOutline = ({
             right: 0,
             width: "20%",
             height: "100%",
-            backgroundColor: "#f5f5f5",
-            padding: "10px",
             overflowY: "scroll",
           }}
         >
-          {/* <h2>Cart</h2> */}
+          <pre className="language-markup animate__animated animate__slideInRight">
           <button
             className="dropdown"
             style={{ position: "absolute", top: "10px", right: "10px" }}
@@ -144,7 +143,6 @@ const HeartOutline = ({
           >
             Close
           </button>
-          <pre className="language-markup">
             <code className="language-markup">
             {
             `

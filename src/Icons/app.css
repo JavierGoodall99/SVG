@@ -59,4 +59,47 @@
     background: none;
     border: none;
   }
+
+
+
+   /* Custom styles for the code block */
+   pre.language-markup {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    /* padding: 17px; */
+    font-family: 'Nanum Myeongjo', serif;
+    /* font-size: 14px; */
+    line-height: 1.5;
+    overflow-x: auto;
+    
+  }
+
+  /* Style the line numbers */
+  /* .line-numbers {
+    display: inline-block;
+    width: 40px;
+    padding: 0 10px;
+    color: #999;
+    text-align: right;
+    border-right: 1px solid #ddd;
+    margin-right: 10px;
+    user-select: none;
+  } */
+
+  /* Style the code language label */
+  /* .language-markup:before {
+    content: 'Markup';
+    background-color: #3581ba;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    border-radius: 4px 0 0 4px;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    margin-right: 10px;
+  } */
+
   
