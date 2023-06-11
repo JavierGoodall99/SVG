@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import Footer from "./Footer";
+import ArrowUpButton from './ArrowUpButton';
 // import MyComponent from './MyComponent';
 
 
@@ -246,6 +247,9 @@ function App(): JSX.Element {
           </div>
         </div>
       </div>
+      <ArrowUpButton />
+      <div>
+    </div>
       <Footer />
     </div>
   );
